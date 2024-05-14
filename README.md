@@ -3,6 +3,37 @@ Datawhale lesson about
 
 # p2s
 
+### Day2
+```python
+# sep 和 end都是默认的，可以不写也可以改。
+
+print('hello world', sep=' ', end='\n')
+"""
+双引号可以接多行注释，python中字符串与整数相乘则是重复次数。
+"""
+# print('h'*4) ==> 'hhhh'
+```
+```python
+# 最大公约数
+import math
+print(gcd(18,36))
+```
+
+```python
+import ast
+ast.literal_eval
+# 这玩意儿有可能导致错误，不用也罢！安心多写一个.split(',')啥的
+```
+
+# 常见错误类型
+
+- SyntaxError  # 语法错误
+- ValueError # 字符串转数字是ValueError，因为本身可以支持字符串传入，但是传入的值不合法，所以并不是TypeError！
+- TypeError   # 无法接受的传入类型
+- NameError  # 未导入第三方库或者没有定义该变量
+- ZeroDivisionError  # 数学上除数不能为0
+- 
+
 # Python学习日记
 
 ### Day1
