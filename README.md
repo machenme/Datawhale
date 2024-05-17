@@ -5,6 +5,18 @@ Datawhale lesson about
 
 # p2s
 ---
+### 5.17
+```python
+>>>int(2.9)
+2  # int直接用的去尾,向上取整还得math.ceil.
+>>>round(x,ndigits=None)  # 如果ndigits是None,就会返回int,其他情况均返回float
+>>>round(1.0,0)  注意,哪怕是0也返回float
+1.0
+# 如何判断两个圆相交,从内切到外切 之间都是相交,要同时满足
+if r1 + r2 >= distance and abs(r1-r2) <= distance:
+```
+
+---
 ### Day3
 ```python
 5//2     # 2 
