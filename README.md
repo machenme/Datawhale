@@ -5,6 +5,8 @@ Datawhale lesson about
 
 # p2s
 ---
+### 5.19
+今天学习的`if else`条件语句,没什么好说的,说实话这章其实可以放在Day2 左右都行
 ### 5.17
 ```python
 >>>int(2.9)
