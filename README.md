@@ -8,7 +8,7 @@ Datawhale lesson about
 ### 5.21
 
 python里面的取值,默认都是左闭右开,能取到左边取不到右边
-`range` 默认参数应该是range(start,end+1,1) `
+`range` 默认参数应该是 `range(start,end+1,1)` 
 
 - 特别注意,如果是从负数开始,任然是依次遍历 start,start+step,start + 2 * steap, ...
 - 如果是后面的字符串切片,最好统一要么都用正向索引或者统一负向索引
