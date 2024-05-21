@@ -5,6 +5,41 @@ Datawhale lesson about
 
 # p2s
 ---
+### 5.21
+
+python里面的取值,默认都是左闭右开,能取到左边取不到右边
+`range` 默认参数应该是range(start,end+1,1) `
+
+- 特别注意,如果是从负数开始,任然是依次遍历 start,start+step,start + 2 * steap, ...
+- 如果是后面的字符串切片,最好统一要么都用正向索引或者统一负向索引
+```python
+>>> for i in range(-5,-2,1):
+...     print(i)
+...
+-5
+-4
+-3
+>>>
+```
+补充教材没有的, 对于`for`循环来说.还有个很实用的叫做`enumerate()`功能.  
+```python
+>>> for idx,i in enumerate(range(-1,-5,-1)):
+...     print(f'index = {idx},i = {i}')
+...
+index = 0,i = -1
+index = 1,i = -2
+index = 2,i = -3
+index = 3,i = -4
+>>>
+```
+
+`while`循环最大的注意点在于是否有停止的条件,否则会无限循环.  
+`break`会终止距离他最近的循环.  
+`continue`会跳过当次循环的剩余部分.  
+
+
+
+---
 ### 5.19
 今天学习的`if else`条件语句,没什么好说的,说实话这章其实可以放在Day2 左右都行
 ### 5.17
