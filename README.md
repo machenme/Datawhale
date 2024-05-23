@@ -4,6 +4,47 @@
 Datawhale lesson about
 
 # p2s
+## 聪明的办法学python
+---
+### 5.23
+`repr()` 返回一个对象的 string形式
+```python
+>>> a = 't'
+>>> print(a)
+t
+>>> print(repr(a))
+'t'
+>>>
+```
+字符串的乘法就是重复多少次,只能是字符串乘以整数  
+  
+`ord` 能获取字符串的ascii  
+`chr` 能从ascii获取对应的字符串  
+
+用`find`代替`index`.因为索引不存在的时候,find会返回-1 而index会报错
+```python
+>>> help(str.find)
+Help on method_descriptor:
+
+find(...)
+    S.find(sub[, start[, end]]) -> int
+
+    Return the lowest index in S where substring sub is found,
+    such that sub is contained within S[start:end].  Optional
+    arguments start and end are interpreted as in slice notation.
+
+    Return -1 on failure.
+
+Help on method_descriptor:
+
+index(...)
+    S.index(sub[, start[, end]]) -> int
+    Raises ValueError when the substring is not found.
+```
+
+
+
+
 ---
 ### 5.21
 
