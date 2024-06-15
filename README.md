@@ -1,5 +1,30 @@
 # Datawhale
 
+# llm
+
+【教程地址】https://datawhalechina.github.io/llm-universe/
+【开源项目仓库】https://github.com/datawhalechina/llm-universe
+【小程序使用说明】https://mp.weixin.qq.com/s/iPmzb72Yk0mhIA2NYezXDg
+【学习者手册】 https://mp.weixin.qq.com/s/pwWg0w1DL2C1i_Hs3SZedg
+### 新的征程已经开始,溜溜梅宇宙队冲鸭
+
+### 6.15
+一晃半个月过去了.又掌握了不少python的知识,是时候朝着星辰大海出发了!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### 作业链接 [https://hydro.ac/d/datawhale_p2s/user/50410](https://hydro.ac/d/datawhale_p2s/user/50410)
 Datawhale lesson about
 
