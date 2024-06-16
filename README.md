@@ -6,6 +6,25 @@
 【开源项目仓库】https://github.com/datawhalechina/llm-universe  
 【小程序使用说明】https://mp.weixin.qq.com/s/iPmzb72Yk0mhIA2NYezXDg  
 【学习者手册】 https://mp.weixin.qq.com/s/pwWg0w1DL2C1i_Hs3SZedg  
+
+Task01:第一章LLM介绍  
+截止时间06月20日03:00
+
+Task02:第二章 使用 LLM API 开发应用  
+截止时间06月23日03:00
+
+Task03:第三章 搭建知识库  
+截止时间06月25日03:00
+
+Task04:第四章 构建 RAG 应用  
+截止时间06月27日03:00
+
+Task05:第五章 系统评估与优化  
+截止时间06月29日03:00
+
+Task06:开源 RAG 项目学习  
+截止时间07月01日03:00
+
 ### 新的征程已经开始,溜溜梅宇宙队冲鸭
 
 ### 6.15
