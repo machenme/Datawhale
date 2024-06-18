@@ -116,6 +116,10 @@ echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 需要修改终端-默认值-外观-字体为推荐字体才能正常显示符号
 </details>
 
+<details>
+  
+<summary>安装miniconda3 + python</summary>
+
 ### 安装miniconda3 + python
 ```bash
 mkdir -p ~/miniconda3
@@ -144,5 +148,43 @@ custom_channels:
   conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
   pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 ```
+</details>
+<details>
+  
+<summary>Make conda useful again</summary>
 
+### Make conda useful again（MCUA）
+`powershell` 输入`notepad $$profile`编辑
+```powershell
+function rmenv($envName) {
+    conda remove -n $envName --all -y
+    conda env list
+}
+
+function mkenv($envName,[string]$pythonVer = "3.11"){
+    conda create -n $envName python=$pythonVer -y
+    conda activate $envName
+}
+```
+`bash`版本
+```bash
+# 定义 rmenv 函数，用于移除 Conda 环境
+rmenv() {
+    # 使用 conda remove 命令移除指定的环境及其所有包
+    conda remove -n "$1" --all -y
+    # 列出所有 Conda 环境
+    conda env list
+}
+```
+# 定义 mkenv 函数，用于创建新的 Conda 环境
+mkenv() {
+    # 使用 conda create 命令创建新的环境，并指定 Python 版本
+    # 默认 Python 版本为 3.11，如果提供了参数，则使用提供的版本
+    envName="$1"
+    pythonVer="${2:-3.11}"
+    conda create -n "$envName" python="$pythonVer" -y
+    # 激活新创建的环境
+    conda activate "$envName"
+}
+```
 
