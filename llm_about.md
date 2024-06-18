@@ -1,4 +1,6 @@
 # llm
+
+## 准备工作
 ### 新的征程已经开始,溜溜梅宇宙队冲鸭
 <details>
   
@@ -148,13 +150,15 @@ custom_channels:
   conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
   pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 ```
-</details>
-<details>
-  
-<summary>Make conda useful again</summary>
+清除conda索引缓存
+```bash
+conda clean -i
+```
 
 ### Make conda useful again（MCUA）
-`powershell` 输入`notepad $$profile`编辑
+
+`powershell` 版本输入`notepad $$profile`编辑
+
 ```powershell
 function rmenv($envName) {
     conda remove -n $envName --all -y
@@ -166,7 +170,8 @@ function mkenv($envName,[string]$pythonVer = "3.11"){
     conda activate $envName
 }
 ```
-`bash`版本
+`bash`版本`vim ~/.bashrc`或者`vim ~/.zshrc`
+
 ```bash
 # 定义 rmenv 函数，用于移除 Conda 环境
 rmenv() {
@@ -175,7 +180,7 @@ rmenv() {
     # 列出所有 Conda 环境
     conda env list
 }
-```
+
 # 定义 mkenv 函数，用于创建新的 Conda 环境
 mkenv() {
     # 使用 conda create 命令创建新的环境，并指定 Python 版本
@@ -187,4 +192,17 @@ mkenv() {
     conda activate "$envName"
 }
 ```
+修改`pip源`
+```bash
+pip config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
+```
 
+</details>
+
+
+
+## llm项目学习
+clone项目到本地,国内直接clone大概率是没速度的,直接从镜像克隆算了
+```bash
+git clone https://mirror.ghproxy.com/https://github.com/datawhalechina/llm-universe.git
+```
