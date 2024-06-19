@@ -202,7 +202,65 @@ pip config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple
 
 
 ## llm项目学习
+<details>
+
+<summary>Day 1</summary>
+
+- 介绍了LLM是什么,国内网常见的大模型有哪些
+- 引出LLM的缺点引入了检索增强生成(RAG)
+- 如何快速搭建属于自己的LLM--LanChain
+- 环境配置  
+
 clone项目到本地,国内直接clone大概率是没速度的,直接从镜像克隆算了
 ```bash
 git clone https://mirror.ghproxy.com/https://github.com/datawhalechina/llm-universe.git
 ```
+新建conda环境
+```bash
+conda create -n llm python=3.11 -y
+conda activate llm
+pip install -r requirement.txt
+
+```
+手动下载`nltk`数据,`nltk_data`在用户路径根目录,文件结构如下,可以通过指令`python -m nltk.downloader popular `下载流行的nltk数据
+```bash
+nltk_data
+└── corpora
+    ├── cmudict
+    │   ├── README
+    │   └── cmudict
+    ├── cmudict.zip
+    ├── gazetteers
+    │   ├── LICENSE.txt
+    │   ├── caprovinces.txt
+    │   ├── countries.txt
+    │   ├── isocountries.txt
+    │   ├── mexstates.txt
+    │   ├── nationalities.txt
+    │   ├── uscities.txt
+    │   ├── usstateabbrev.txt
+    │   └── usstates.txt
+    ├── gazetteers.zip
+    ├── genesis
+    │   ├── README
+    │   ├── english-kjv.txt
+    │   ├── english-web.txt
+    │   ├── finnish.txt
+    │   ├── french.txt
+    │   ├── german.txt
+    │   ├── lolcat.txt
+    │   ├── portuguese.txt
+    │   └── swedish.txt
+    └── genesis.zip
+```
+手动下载`nltk_data`, 可能需要先安装`unzip`
+```bash
+git clone https://gitee.com/yzy0612/nltk_data.git  --branch gh-pages
+cd nltk_data
+mv packages/*  ./
+cd tokenizers
+unzip punkt.zip
+cd ../taggers
+unzip averaged_perceptron_tagger.zip
+```
+</details>
