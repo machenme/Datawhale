@@ -226,7 +226,7 @@ git clone https://mirror.ghproxy.com/https://github.com/datawhalechina/llm-unive
 ```bash
 conda create -n llm python=3.11 -y
 conda activate llm
-pip install -r requirement.txt
+pip install -r requirements.txt
 
 ```
 手动下载`nltk`数据,`nltk_data`在用户路径根目录,文件结构如下,可以通过指令`python -m nltk.downloader popular `下载流行的nltk数据
