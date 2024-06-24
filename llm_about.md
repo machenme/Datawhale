@@ -426,3 +426,69 @@ You might instead try to search for articles using title or author information.
 For additional help on arXiv identifiers, see understanding the arXiv identifier.
 ```
 </details>
+
+<details>
+
+<summary>Class 3</summary>
+
+### 词向量
+
+- 把一个单词,一个句子甚至一个文档转为实数向量
+- 基本思想:具有相似上下文的词语在语义上具有相似的含义,相似或相关的对象在嵌入空间中的距离应该很近
+- 统一多模态
+- 存储在向量数据库中(eg. Chroma)
+
+### 数据处理
+- 读取数据(居然能直接读取整个pdf)
+```python
+from langchain.document_loaders.pdf import PyMuPDFLoader
+
+# 创建一个 PyMuPDFLoader Class 实例，输入为待加载的 pdf 文档路径
+loader = PyMuPDFLoader("../../data_base/knowledge_db/pumkin_book/pumpkin_book.pdf")
+
+# 调用 PyMuPDFLoader Class 的函数 load 对 pdf 文件进行加载
+pdf_pages = loader.load()
+```
+`metadata`查看元数据  
+`page_content`查看文档内容  
+
+- 清洗数据  
+    - 去掉多余的符号与换行符,常见的正则表达式范围
+    - `\u4e00-\u9fff` 所有汉字
+    - `\u2e80-\u9fff` 所有中日韩字符
+
+```python
+# 创建一个正则表达式对象,匹配的条件是 "非中文字符\n非中文字符"满足这个条件的\n 只选择括号内的内容
+# DOTALL 能够捕获换行符
+pattern = re.compile(r'[^\u4e00-\u9fff](\n)[^\u4e00-\u9fff]', re.DOTALL)
+# 找到第一个满足的然后把
+pdf_page.page_content = re.sub(pattern, lambda match: match.group(0).replace('\n', ''), pdf_page.page_content)
+print(pdf_page.page_content)
+```
+- 文档分割
+    - 如果不分割文档,那么可能一次的输入会超过模型支持的长度,我们需要分割开
+```python
+''' 
+RecursiveCharacterTextSplitter 将按不同的字符递归地分割(按照这个优先级["\n\n", "\n", " ", ""])，
+    这样就能尽量把所有和语义相关的内容尽可能长时间地保留在同一位置
+需要关注4个参数：
+
+* separators - 分隔符字符串数组
+* chunk_size - 每个文档的字符数量限制
+* chunk_overlap - 两份文档重叠区域的长度
+* length_function - 长度计算函数
+'''
+#导入文本分割器
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500,
+    chunk_overlap=50
+)
+text_splitter.split_text(pdf_page.page_content[0:1000])
+>>> 实际存储内容,第一个是[0:500],第二个是[450:950],第三个是[900:1000]
+```
+### 搭建向量数据库
+- 构建向量库`langchain.embeddings`
+- 向量检索,余弦相似度
+</details>
