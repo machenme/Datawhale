@@ -492,3 +492,108 @@ text_splitter.split_text(pdf_page.page_content[0:1000])
 - 构建向量库`langchain.embeddings`
 - 向量检索,余弦相似度
 </details>
+
+<details>
+
+<summary>Class 4</summary>
+
+### 直接通过LangChain调用文心一言
+```python
+from langchain_community.llms import QianfanLLMEndpoint
+
+llm = QianfanLLMEndpoint(streaming=True)
+res = llm("你好，请你自我介绍一下！")
+print(res)
+```
+
+### 加载Chroma数据库,由上一章的embedding生成
+```python
+# 向量数据库持久化路径
+persist_directory = '../../data_base/vector_db/chroma'
+
+# 加载数据库
+vectordb = Chroma(
+    persist_directory=persist_directory,
+    embedding_function=embedding
+)
+```
+### 测试数据库
+```python
+question = "什么是prompt engineering?"
+#特别注意,当实际结果不足K个的时候,也会返回K个结果
+docs = vectordb.similarity_search(question,k=3)
+
+print(f"检索到的内容数：{len(docs)}")
+```
+
+### 创建LLM
+```python
+from dotenv import find_dotenv, load_dotenv
+import os
+from langchain_community.llms import QianfanLLMEndpoint
+
+_ = load_dotenv(find_dotenv())
+
+# QIANFAN_AK = os.environ["QIANFAN_AK"]
+# QIANFAN_SK = os.environ["QIANFAN_SK"]
+
+llm = QianfanLLMEndpoint(streaming=True)
+res = llm("你好，请你自我介绍一下！")
+print(res)
+```
+
+### 构建检索问答链
+```python
+from langchain.prompts import PromptTemplate
+
+template = """使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答
+案。最多使用三句话。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。
+{context}
+问题: {question}
+"""
+
+QA_CHAIN_PROMPT = PromptTemplate(input_variables=["context","question"],template=template)
+
+from langchain.chains import RetrievalQA
+# 本质上就是让LLM模型能够参考我们的chroma数据库
+qa_chain = RetrievalQA.from_chain_type(llm,
+                                       retriever=vectordb.as_retriever(),
+                                       return_source_documents=True,
+                                       chain_type_kwargs={"prompt":QA_CHAIN_PROMPT})
+
+```
+
+### 让AI也有记忆
+本质上是将我们的对话不停地传递给AI
+- 对话检索链（ConversationalRetrievalChain）在检索 QA 链的基础上，增加了处理对话历史的能力。工作流程是:
+    1. 将之前的对话与新问题合并生成一个完整的查询语句。
+    2. 在向量数据库中搜索该查询的相关文档。
+    3. 获取结果后,存储所有答案到对话记忆区。
+    4. 用户可在 UI 中查看完整的对话流程。
+```python
+from langchain.memory import ConversationBufferMemory
+
+memory = ConversationBufferMemory(
+    memory_key="chat_history",  # 与 prompt 的输入变量保持一致。
+    return_messages=True  # 将以消息列表的形式返回聊天记录，而不是单个字符串
+)
+```
+
+### 构建一个漂亮的UI界面
+使用`steamlit`快速搭建Web界面
+- st.write()：这是最基本的模块之一，用于在应用程序中呈现文本、图像、表格等内容。
+- st.title()、st.header()、st.subheader()：这些模块用于添加标题、子标题和分组标题，以组织应用程序的布局。
+- st.text()、st.markdown()：用于添加文本内容，支持 Markdown 语法。
+- st.image()：用于添加图像到应用程序中。
+- st.dataframe()：用于呈现 Pandas 数据框。
+- st.table()：用于呈现简单的数据表格。
+- st.pyplot()、st.altair_chart()、st.plotly_chart()：用于呈现 Matplotlib、Altair 或 Plotly 绘制的图表。
+- st.selectbox()、st.multiselect()、st.slider()、st.text_input()：用于添加交互式小部件，允许用户在应用程序中进行选择、输入或滑动操作。
+- st.button()、st.checkbox()、st.radio()：用于添加按钮、复选框和单选按钮，以触发特定的操作。
+
+这些基础模块使得通过 Streamlit 能够轻松地构建交互式数据应用程序，并且在使用时可以根据需要进行组合和定制，更多内容请查看[官方文档](https://docs.streamlit.io/get-started)
+
+实际效果如图所示,代码可以在[qianfan_steamlit_app.py](qianfan_steamlit_app.py)
+[![pkyaar9.png](https://s21.ax1x.com/2024/06/26/pkyaar9.png)](https://imgse.com/i/pkyaar9)
+
+</details>
