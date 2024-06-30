@@ -801,3 +801,28 @@ A:
 
 该类问题的一般优化思路是，优化向量模型或是构建倒排索引。我们可以选择效果更好的向量模型，或是收集部分数据，在自己的业务上微调一个更符合自己业务的向量模型。我们也可以考虑构建倒排索引，即针对知识库的每一个知识片段，构建一个能够表征该片段内容但和 query 的相对相关性更准确的索引，在检索时匹配索引和 query 的相关性而不是全文，从而提高匹配关系的准确性。
 </details>
+
+
+<details>
+
+<summary>Class 6</summary>
+
+暂时跑不起来项目,只有后面有空了再慢慢看看原因了,我有尝试过删除langchain的版本号还是不行.QaQ
+```python
+ERROR: Cannot install -r requirements.txt (line 159), -r requirements.txt (line 64) and langsmith because these package versions have conflicting dependencies.
+
+The conflict is caused by:
+    The user requested langsmith
+    langchain 0.0.292 depends on langsmith<0.1.0 and >=0.0.21
+    langchain-community 0.0.31 depends on langsmith<0.2.0 and >=0.1.0
+
+To fix this you could try to:
+1. loosen the range of package versions you've specified
+2. remove package versions to allow pip attempt to solve the dependency conflict
+
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts
+```
+
+
+
+</details>
