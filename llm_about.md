@@ -807,22 +807,42 @@ A:
 
 <summary>Class 6</summary>
 
-暂时跑不起来项目,只有后面有空了再慢慢看看原因了,我有尝试过删除langchain的版本号还是不行.QaQ
-```python
-ERROR: Cannot install -r requirements.txt (line 159), -r requirements.txt (line 64) and langsmith because these package versions have conflicting dependencies.
+### 如何搭建属于自己的LLM应用
+通过RAG+langchain+LLM实现，建立全流程可使用开源模型实现应用
 
-The conflict is caused by:
-    The user requested langsmith
-    langchain 0.0.292 depends on langsmith<0.1.0 and >=0.0.21
-    langchain-community 0.0.31 depends on langsmith<0.2.0 and >=0.1.0
+搭建数据库
 
-To fix this you could try to:
-1. loosen the range of package versions you've specified
-2. remove package versions to allow pip attempt to solve the dependency conflict
+    1.创建知识库并加载文件
 
-ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts
-```
+    2.读取文件并文本分割(Text splitter)
 
+    3.知识库文本向量化(embedding)
 
+    4.存储到向量数据库(chroma)
+
+RAG流程如下
+
+    1.用户提出问题 Query
+
+    2.加载和读取知识库文档  
+
+    3.对知识库文档进行分割  
+
+    4.对分割后的知识库文本向量化并存入向量库建立索引 
+
+    5.对问句 Query 向量化  
+
+    6.在知识库文档向量中匹配出与问句 Query 向量最相似的 top k 个
+
+    7.匹配出的知识库文本文本作为上下文 Context 和问题⼀起添加到 prompt 中   
+
+    8.提交给 LLM 生成回答 Answer
+
+总结
+    通过这次的学习,更多的是学会了如何利用python去调用大模型,而不是直接在网页端使用.当然中间其实有很多函数什么的可能并不能够完全理解,但是在这门课程中,更多的是关注整体的流程.
+
+    恭喜我又获得了优秀学员,哈哈哈.
+
+    下个月再见.
 
 </details>
