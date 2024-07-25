@@ -3,7 +3,7 @@
 *.zip
 *.pth
 *.pt
-earth/feature/*
-earth/groundtruth/*
-earth/output/*
-earth/test/*
+./earth/feature/*
+./earth/groundtruth/*
+./earth/output/*
+./earth/test/*
