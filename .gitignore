@@ -1,1 +1,6 @@
 *.csv
+*.nc
+*.zip
+*.pth
+*.pt
+earth/feature/*
