@@ -30,7 +30,6 @@
 既然要研究神经网络,那么在`TensorFlow`(已逐渐淘汰),`Pytorch`(本次学习),`JAX`(难度太高目前没研究)里面就选择`Pytorch`好了
 
 `pytorch`官网地址[https://pytorch.org](https://pytorch.org)
-</details>
 
 ### 安装`pytorch`
 - CPU版本:
@@ -86,3 +85,4 @@ torch.cuda.is_available()
     
     对于分类任务,通常使用`softmax`函数将输出转换为概率.对于回归任务,直接使用模型输出作为预测值.将预测结果进行后处理以便于解释或进一步使用. 
 
+</details>
