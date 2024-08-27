@@ -80,6 +80,9 @@
 ### 等高线图与误差表面
 
 - 通过不同的参数 $w$ 和 $b$ 组合，可以计算出对应的损失值，并绘制等高线图。等高线图展示了不同参数组合下的损失大小，形成了所谓的 **误差表面**（Error Surface）。
+<p align="center">
+  <img src="https://github.com/machenme/Datawhale/blob/main/deep_learning_basic/imgs/gradient_descent.png" alt="gradient_descent" />
+</p>
 
 - 在图中，**红色区域表示损失较大**，说明参数组合不理想；**蓝色区域表示损失较小**，说明参数组合较好。
 
